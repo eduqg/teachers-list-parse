@@ -129,7 +129,10 @@ export default function List() {
               <TeacherStars>{item.attributes.nota}</TeacherStars>
             </CardHeader>
             <CardBottom>
-              <CardButton onClick={() => handleOpenModal(item)}>
+              <CardButton
+                name={item.attributes.nome}
+                onClick={() => handleOpenModal(item)}
+              >
                 Selecionar
               </CardButton>
             </CardBottom>

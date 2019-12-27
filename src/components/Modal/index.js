@@ -7,7 +7,7 @@ const Modal = ({ handleClose, show, children }) => {
     <ContainerModal show={show}>
       <ModalMain>
         {children}
-        <ModalButton type="button" onClick={handleClose}>
+        <ModalButton name="fechar" type="button" onClick={handleClose}>
           Fechar
         </ModalButton>
       </ModalMain>
