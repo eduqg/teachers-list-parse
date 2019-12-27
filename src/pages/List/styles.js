@@ -25,6 +25,7 @@ export const Card = styled.div`
   margin: 16px 16px;
   min-width: 50%;
   height: 150px;
+  padding: 16px 0;
 `;
 
 export const SearchInput = styled.input`
@@ -51,7 +52,6 @@ export const CardImage = styled.img`
   height: 60px;
   border-radius: 30px;
   border: 3px solid rgba(0, 0, 0, 0.2);
-  margin-top: 15px;
 `;
 
 export const CardMiddle = styled.div`
@@ -81,6 +81,7 @@ export const Field = styled.div`
 
 export const TeacherStars = styled.h3`
   color: #989898;
+  margin-bottom: 16px;
 `;
 
 export const CardBottom = styled.div`
@@ -115,8 +116,6 @@ export const CardButton = styled.button`
 
 // Modal
 
-export const WrapImage = styled.div``;
-
 export const ModalTop = styled.div`
   display: flex;
   flex-direction: column;
@@ -128,6 +127,7 @@ export const ModalImage = styled.img`
   height: 160px;
   border-radius: 80px;
   border: 5px solid #ff8008;
+  margin-bottom: 16px;
 `;
 
 export const ModalLocation = styled.h4`
@@ -139,4 +139,5 @@ export const ModalMiddle = styled.div``;
 export const ModalCurriculum = styled.h4`
   color: rgba(0, 0, 0, 0.4);
   text-align: justify;
+  margin: 32px 0;
 `;

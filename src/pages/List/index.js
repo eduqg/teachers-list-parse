@@ -18,7 +18,6 @@ import {
   TeacherStars,
   CardBottom,
   CardButton,
-  WrapImage,
   ModalImage,
   ModalTop,
   ModalMiddle,
@@ -141,12 +140,12 @@ export default function List() {
           <ModalImage src={teacherInfo.imagem_url} />
           <TeacherName>{teacherInfo.nome}</TeacherName>
           <ModalLocation>{teacherInfo.bairro}</ModalLocation>
+          <TeacherStars>{teacherInfo.nota}</TeacherStars>
           <TeacherFields>
             {teacherInfo.materias.map(modalItem => (
               <Field key={modalItem}>{modalItem}</Field>
             ))}
           </TeacherFields>
-          <TeacherStars>{teacherInfo.nota}</TeacherStars>
         </ModalTop>
         <ModalMiddle>
           <ModalCurriculum>{teacherInfo.curriculo}</ModalCurriculum>
