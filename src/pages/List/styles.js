@@ -20,6 +20,18 @@ export const SearchInput = styled.input`
   }
 `;
 
+export const Loading = styled.img`
+  animation: rotating 2s linear infinite;
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 export const TeachersList = styled.div`
   max-width: 1400px;
   display: grid;

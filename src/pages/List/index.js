@@ -4,6 +4,8 @@ import Parse from 'parse';
 
 import Modal from '../../components/Modal';
 
+import logo from '../../assets/logo-cinza.png';
+
 import {
   Container,
   SearchInput,
@@ -24,6 +26,7 @@ import {
   ModalMiddle,
   ModalLocation,
   ModalCurriculum,
+  Loading,
 } from './styles';
 
 export default function List() {
@@ -38,6 +41,7 @@ export default function List() {
   const [teachers, setTeachers] = useState([]);
   const [pesquisa, setPesquisa] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [teacherInfo, setTeacherInfo] = useState({
     nome: '',
     imagem_url: '',
@@ -48,6 +52,7 @@ export default function List() {
   });
 
   useEffect(() => {
+    setLoading(true);
     console.log('Get teachers');
 
     async function loadAll() {
@@ -58,8 +63,11 @@ export default function List() {
 
         console.log(response);
         setTeachers(response);
+
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     }
 
@@ -67,6 +75,8 @@ export default function List() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
+
     async function reLoad() {
       try {
         const query = new Parse.Query('Teacher');
@@ -77,8 +87,10 @@ export default function List() {
         const response = await query.find();
 
         setTeachers(response);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     }
 
@@ -111,6 +123,9 @@ export default function List() {
         value={pesquisa}
         onChange={e => setPesquisa(e.target.value)}
       />
+
+      {loading && <Loading src={logo} />}
+
 
       <TeachersList>
         {teachers.map(item => (
