@@ -1,10 +1,22 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Parse from 'parse';
-import { Container } from './styles';
-
-// import api from '../../services/api';
+import {
+  Container,
+  SearchInput,
+  TeachersList,
+  Card,
+  CardHeader,
+  CardImage,
+  CardMiddle,
+  TeacherName,
+  TeacherFields,
+  Field,
+  TeacherStars,
+  CardBottom,
+  CardButton,
+} from './styles';
 
 export default function List() {
   Parse.initialize(
@@ -15,73 +27,78 @@ export default function List() {
 
   Parse.serverURL = 'https://server-teachers-list.herokuapp.com/parse';
 
-  async function handleSend() {
-    try {
-      console.log('Enviou');
-      const Post = Parse.Object.extend('Post');
-      const post = new Post();
-      const data = {
-        body: 'Hello my name is Eduardo',
-        tags: ['welcome', 'first post'],
-        numComments: 2,
-      };
+  const [teachers, setTeachers] = useState([]);
+  const [pesquisa, setPesquisa] = useState('');
 
-      const response = await post.save(data);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+  useEffect(() => {
+    console.log('Get teachers');
+
+    async function loadAll() {
+      try {
+        const query = new Parse.Query('Teacher');
+
+        const response = await query.find();
+
+        console.log(response);
+        setTeachers(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
 
-  async function handleGetOne(itemId) {
-    console.log('Get');
+    loadAll();
+  }, []);
 
-    try {
-      const query = new Parse.Query('Post'); // eslint-disable-line
-      const response = await query.get(itemId);
-      console.log(response.attributes);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function reLoad() {
+      try {
+        const query = new Parse.Query('Teacher');
+
+        if (pesquisa !== '') {
+          query.matches('nome', pesquisa, 'i');
+        }
+        const response = await query.find();
+
+        setTeachers(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
 
-  async function handleGet() {
-    console.log('Get');
-
-    try {
-      const query = new Parse.Query('Post'); // eslint-disable-line
-
-      const response = await query.find();
-
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function handleDelete(itemId) {
-    console.log('Delete');
-
-    try {
-      const query = new Parse.Query('Post'); // eslint-disable-line
-      const object = await query.get(itemId);
-      console.log(object.attributes);
-
-      const response = await object.destroy();
-
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+    reLoad();
+  }, [pesquisa]);
 
   return (
     <Container>
-      <h1>List</h1>
-      <button onClick={handleSend}>Enviar!</button>
-      <button onClick={() => handleGetOne('1elK2SAFjC')}>Get One!</button>
-      <button onClick={() => handleGet()}>Get All!</button>
-      <button onClick={() => handleDelete('vH2auypHT7')}>Delete!</button>
+      <SearchInput
+        type="text"
+        name="pesquisa"
+        placeholder="Pesquise um professor"
+        value={pesquisa}
+        onChange={e => setPesquisa(e.target.value)}
+      />
+
+      <TeachersList>
+        {teachers.map(item => (
+          <Card key={item.id}>
+            <CardHeader>
+              <CardImage src={item.attributes.imagem._url} />
+              <CardMiddle>
+                <TeacherName>{item.attributes.nome}</TeacherName>
+                <TeacherFields>
+                  {item.attributes.materia.map(subitem => (
+                    <Field key={subitem}>{subitem}</Field>
+                  ))}
+                </TeacherFields>
+              </CardMiddle>
+              <TeacherStars>{item.attributes.nota}</TeacherStars>
+            </CardHeader>
+            <CardBottom>
+              <CardButton to="/teachers">Selecionar</CardButton>
+            </CardBottom>
+          </Card>
+        ))}
+      </TeachersList>
     </Container>
   );
 }
