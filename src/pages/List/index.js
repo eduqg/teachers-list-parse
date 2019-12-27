@@ -14,6 +14,7 @@ import {
   CardMiddle,
   TeacherName,
   TeacherFields,
+  CardFields,
   Field,
   TeacherStars,
   CardBottom,
@@ -120,14 +121,18 @@ export default function List() {
                 <TeacherName testid={item.attributes.nome}>
                   {item.attributes.nome}
                 </TeacherName>
-                <TeacherFields>
-                  {item.attributes.materia.map(subitem => (
-                    <Field key={subitem}>{subitem}</Field>
-                  ))}
-                </TeacherFields>
               </CardMiddle>
               <TeacherStars>{item.attributes.nota}</TeacherStars>
             </CardHeader>
+
+            <CardFields>
+              <TeacherFields>
+                {item.attributes.materia.map(subitem => (
+                  <Field key={subitem}>{subitem}</Field>
+                ))}
+              </TeacherFields>
+            </CardFields>
+
             <CardBottom>
               <CardButton
                 name={item.attributes.nome}

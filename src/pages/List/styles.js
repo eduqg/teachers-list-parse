@@ -4,6 +4,7 @@ import { darken } from 'polished';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const SearchInput = styled.input`
@@ -11,8 +12,8 @@ export const SearchInput = styled.input`
   font-size: 16px;
   padding: 8px 8px;
   border-radius: 8px;
-  margin-left: 16px;
   width: 300px;
+  margin-bottom: 32px;
 
   &:focus {
     outline: none;
@@ -20,14 +21,20 @@ export const SearchInput = styled.input`
 `;
 
 export const TeachersList = styled.div`
+  max-width: 1400px;
   display: grid;
+  grid-gap: 1rem;
 
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  @media (min-width: 100px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-  @media only screen and (max-width: 768px) {
-    grid-template-columns: 100%;
-    grid-auto-rows: 10px;
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr)
   }
 `;
 
@@ -39,8 +46,8 @@ export const Card = styled.div`
   transition: all 0.3s;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
   margin: 16px 16px;
-  min-width: 50%;
-  height: 150px;
+  width: 400px;
+  height: 180px;
   padding: 16px 0;
 `;
 
@@ -62,14 +69,24 @@ export const CardMiddle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 `;
 export const TeacherName = styled.h3`
   font-weight: 700;
   color: #303030;
+  margin-bottom: 16px;
 `;
 
-export const TeacherFields = styled.div``;
+export const TeacherFields = styled.div`
+  margin-left: 16px;
+`;
+
+export const CardFields = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+
+`;
 
 export const Field = styled.div`
   display: inline-block;
@@ -132,6 +149,7 @@ export const ModalImage = styled.img`
   border-radius: 80px;
   border: 5px solid #ff8008;
   margin-bottom: 16px;
+
 `;
 
 export const ModalLocation = styled.h4`

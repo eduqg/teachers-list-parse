@@ -14,7 +14,7 @@ export const ContainerModal = styled.div`
 export const ModalMain = styled.div`
   position: fixed;
   background: white;
-  width: 80%;
+  width: 50%;
   min-height: 400px;
   top: 50%;
   left: 50%;
