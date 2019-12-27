@@ -10,11 +10,12 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h3`
   font-size: 36px;
   color: #ff8008;
   margin-bottom: 32px;
   margin-top: 16px;
+  font-weight: normal;
 `;
 
 export const Subtitle = styled.p`

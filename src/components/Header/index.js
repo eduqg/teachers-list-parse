@@ -14,12 +14,14 @@ export default function Header() {
   return (
     <Container>
       <HeaderLeft>
-        <Link to="/">
+        <Link to="/" id="link-home">
           <Logo src={logo} />
         </Link>
       </HeaderLeft>
       <HeaderRight>
-        <ButtonHeader to="/list">Professores</ButtonHeader>
+        <ButtonHeader to="/list" id="link-teachers">
+          Professores
+        </ButtonHeader>
       </HeaderRight>
     </Container>
   );

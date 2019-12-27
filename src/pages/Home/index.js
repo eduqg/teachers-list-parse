@@ -9,7 +9,7 @@ export default function Help() {
     <Container>
       <Card>
         <img src={logo} alt="logohome" />
-        <Title>Seja bem-vindo!</Title>
+        <Title testid="welcome-text">Seja bem-vindo!</Title>
         <Subtitle>
           Os melhores professores de aulas particulares de brasília a um clique!
         </Subtitle>

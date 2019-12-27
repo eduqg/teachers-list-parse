@@ -117,7 +117,9 @@ export default function List() {
             <CardHeader>
               <CardImage src={item.attributes.imagem._url} />
               <CardMiddle>
-                <TeacherName>{item.attributes.nome}</TeacherName>
+                <TeacherName testid={item.attributes.nome}>
+                  {item.attributes.nome}
+                </TeacherName>
                 <TeacherFields>
                   {item.attributes.materia.map(subitem => (
                     <Field key={subitem}>{subitem}</Field>
