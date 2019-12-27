@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { darken } from 'polished';
 
 export const Container = styled.div``;
 
@@ -89,14 +89,14 @@ export const CardBottom = styled.div`
   margin: 16px 16px;
 `;
 
-export const CardButton = styled(Link)`
+export const CardButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
 
   text-decoration: none;
 
-  height: 16px;
+  height: auto;
   color: #fff;
   background-color: #ff8008;
   border: 2px solid #ff8008;
@@ -105,5 +105,38 @@ export const CardButton = styled(Link)`
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
-  transition: all 0.3s;
+
+  transition: all 0.05s ease-in;
+
+  &:hover {
+    background-color: ${darken(0.05, '#ff8008')};
+  }
+`;
+
+// Modal
+
+export const WrapImage = styled.div``;
+
+export const ModalTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalImage = styled.img`
+  height: 160px;
+  border-radius: 80px;
+  border: 5px solid #ff8008;
+`;
+
+export const ModalLocation = styled.h4`
+  margin: 8px;
+  color: rgba(0, 0, 0, 0.4);
+`;
+
+export const ModalMiddle = styled.div``;
+export const ModalCurriculum = styled.h4`
+  color: rgba(0, 0, 0, 0.4);
+  text-align: justify;
 `;

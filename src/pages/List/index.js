@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-
 import Parse from 'parse';
+
+import Modal from '../../components/Modal';
+
 import {
   Container,
   SearchInput,
@@ -16,6 +18,12 @@ import {
   TeacherStars,
   CardBottom,
   CardButton,
+  WrapImage,
+  ModalImage,
+  ModalTop,
+  ModalMiddle,
+  ModalLocation,
+  ModalCurriculum,
 } from './styles';
 
 export default function List() {
@@ -29,6 +37,15 @@ export default function List() {
 
   const [teachers, setTeachers] = useState([]);
   const [pesquisa, setPesquisa] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [teacherInfo, setTeacherInfo] = useState({
+    nome: '',
+    imagem_url: '',
+    curriculo: '',
+    nota: 0,
+    bairro: '',
+    materias: [],
+  });
 
   useEffect(() => {
     console.log('Get teachers');
@@ -68,6 +85,23 @@ export default function List() {
     reLoad();
   }, [pesquisa]);
 
+  function handleOpenModal(item) {
+    const data = {
+      nome: item.attributes.nome,
+      imagem_url: item.attributes.imagem._url,
+      curriculo: item.attributes.curriculo,
+      nota: item.attributes.nota,
+      bairro: item.attributes.bairro,
+      materias: item.attributes.materia,
+    };
+
+    setTeacherInfo(data);
+    setShowModal(true);
+  }
+
+  function handleCloseModal() {
+    setShowModal(false);
+  }
   return (
     <Container>
       <SearchInput
@@ -94,11 +128,30 @@ export default function List() {
               <TeacherStars>{item.attributes.nota}</TeacherStars>
             </CardHeader>
             <CardBottom>
-              <CardButton to="/teachers">Selecionar</CardButton>
+              <CardButton onClick={() => handleOpenModal(item)}>
+                Selecionar
+              </CardButton>
             </CardBottom>
           </Card>
         ))}
       </TeachersList>
+
+      <Modal handleClose={handleCloseModal} show={showModal}>
+        <ModalTop>
+          <ModalImage src={teacherInfo.imagem_url} />
+          <TeacherName>{teacherInfo.nome}</TeacherName>
+          <ModalLocation>{teacherInfo.bairro}</ModalLocation>
+          <TeacherFields>
+            {teacherInfo.materias.map(modalItem => (
+              <Field key={modalItem}>{modalItem}</Field>
+            ))}
+          </TeacherFields>
+          <TeacherStars>{teacherInfo.nota}</TeacherStars>
+        </ModalTop>
+        <ModalMiddle>
+          <ModalCurriculum>{teacherInfo.curriculo}</ModalCurriculum>
+        </ModalMiddle>
+      </Modal>
     </Container>
   );
 }

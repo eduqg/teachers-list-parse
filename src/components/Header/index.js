@@ -19,7 +19,7 @@ export default function Header() {
         </Link>
       </HeaderLeft>
       <HeaderRight>
-        <ButtonHeader to="/teacher">Professores</ButtonHeader>
+        <ButtonHeader to="/list">Professores</ButtonHeader>
       </HeaderRight>
     </Container>
   );
