@@ -1,7 +1,23 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SearchInput = styled.input`
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  padding: 8px 8px;
+  border-radius: 8px;
+  margin-left: 16px;
+  width: 300px;
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 export const TeachersList = styled.div`
   display: grid;
@@ -26,18 +42,6 @@ export const Card = styled.div`
   min-width: 50%;
   height: 150px;
   padding: 16px 0;
-`;
-
-export const SearchInput = styled.input`
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 16px;
-  padding: 8px 8px;
-  border-radius: 8px;
-  margin-left: 16px;
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const CardHeader = styled.div`

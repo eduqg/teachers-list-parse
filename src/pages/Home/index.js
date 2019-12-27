@@ -1,11 +1,22 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { Container, Card, Title, Subtitle, ButtonHome } from './styles';
 
-export default function Home() {
+import logo from '../../assets/logo-cinza.png';
+
+export default function Help() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Container>
+      <Card>
+        <img src={logo} alt="logohome" />
+        <Title>Seja bem-vindo!</Title>
+        <Subtitle>
+          Os melhores professores de aulas particulares de brasília a um clique!
+        </Subtitle>
+        <ButtonHome to="/list" id="link-list">
+          Veja os nossos professores
+        </ButtonHome>
+      </Card>
+    </Container>
   );
 }
