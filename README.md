@@ -1,5 +1,7 @@
 ## Lista de professores com a biblioteca Parse
 
+<img src="src/assets/sitelistadeprofessores.gif">
+
 Instale as dependências
 
 ```console
